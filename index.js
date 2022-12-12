@@ -15,7 +15,7 @@ app.use(express.json());
 
 
 app.get('/', (req,res) => {
-  res.sendFile(path.join(__dirname, 'index2.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.post('/get', Text.Text);
