@@ -20,6 +20,14 @@ app.get('/', (req,res) => {
 
 app.post('/get', Text.Text);
 
+app.post("/demo", (req,res) => {
+  response = {  
+    first_name:"yaseer",  
+    last_name:"123456"  
+  };
+  res.send(response);
+})
+
 app.listen(port, () =>{
   console.log("app running in port "+port);
 });
