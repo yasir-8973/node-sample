@@ -3,7 +3,7 @@ const app = express();
 const port = 3000;
 const path = require('path');
 const Text = require('./react');
-const cors = require("cors");
+const cors = require("cors"); 
 
 var corsOptions = {
     origin: "*"
