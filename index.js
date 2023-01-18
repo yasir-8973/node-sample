@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 4000;
+const port = 3000;
 const path = require('path');
 const Text = require('./react');
 const cors = require("cors");
@@ -19,6 +19,14 @@ app.get('/', (req,res) => {
 });
 
 app.post('/get', Text.Text);
+
+app.post("/demo", (req,res) => {
+  response = {  
+    first_name:"yaseer",  
+    last_name:"123456"  
+  };
+  res.send(response);
+})
 
 const db = require("./app/models");
 db.mongoose
