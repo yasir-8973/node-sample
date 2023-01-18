@@ -1,9 +1,9 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = 4000;
 const path = require('path');
 const Text = require('./react');
-const cors = require("cors"); 
+const cors = require("cors");
 
 var corsOptions = {
     origin: "*"
@@ -15,18 +15,26 @@ app.use(express.json());
 
 
 app.get('/', (req,res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.post('/get', Text.Text);
 
-app.post("/demo", (req,res) => {
-  response = {  
-    first_name:"yaseer",  
-    last_name:"123456"  
-  };
-  res.send(response);
+const db = require("./app/models");
+db.mongoose
+.connect(db.url, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 })
+.then(() => {
+  console.log("Connected to the database!");
+})
+.catch(err => {
+  console.log("Cannot connect to the database!", err);
+  process.exit();
+});
+
+require("./app/routes/template.routes")(app);
 
 app.listen(port, () =>{
   console.log("app running in port "+port);
